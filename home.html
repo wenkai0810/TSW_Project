@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartCardMY - Credit Card Recommender</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBJxAjy8JSSTEymui7F8ROlAd93x1ObXIQ",
+      authDomain: "tsw-project-e8ebc.firebaseapp.com",
+      projectId: "tsw-project-e8ebc",
+      storageBucket: "tsw-project-e8ebc.appspot.com",
+      messagingSenderId: "800195352409",
+      appId: "1:800195352409:web:1f6c0a2dd115fa8a90de48"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  </script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-light justify-content-between px-4">
+    <a class="navbar-brand">SmartCardMY</a>
+    <div>
+      <span id="userStatus" class="me-3"></span>
+      <button id="logoutBtn" class="btn btn-outline-danger me-2 d-none" onclick="logout()">Logout</button>
+      <button id="loginBtn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+      <button id="registerBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <div class="container mt-5 text-center">
+    <h1>Welcome to SmartCardMY</h1>
+    <p>Find the best credit card in Malaysia based on your income.</p>
+    <button id="getStartedBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registerModal">Get Started</button>
+  </div>
+
+  <!-- Advertisement Modal -->
+  <div class="modal fade" id="adModal" tabindex="-1" aria-labelledby="adModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="adModalLabel">🔥 Special Credit Card Offer!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="https://i.pinimg.com/564x/32/30/15/32301584d1103e1ae4c93c02befc26fb.jpg" 
+               alt="Promo" class="img-fluid mb-3" style="max-height: 200px;" />
+          <p class="lead">Apply today and enjoy RM100 cashback with 0% interest on balance transfers!</p>
+          <a href="#" class="btn btn-danger mt-2">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="registerForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Register</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" required />
+            </div>
+            <div class="mb-3">
+              <label for="income" class="form-label">Monthly Income (MYR)</label>
+              <input type="number" class="form-control" id="income" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="loginForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="loginEmail" required />
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginPassword" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendation Results -->
+  <div class="container mt-5 d-none" id="recommendationResults">
+    <h4>Recommended Credit Cards</h4>
+    <div id="cardsContainer" class="row"></div>
+  </div>
+
+  <!-- JS: Auto-show Ad Modal -->
+  <script>
+    window.addEventListener("load", () => {
+      const adModal = new bootstrap.Modal(document.getElementById("adModal"));
+      adModal.show();
+    });
+  </script>
+
+  <!-- JS Logic -->
+  <script src="main.js"></script>
+</body>
+</html>
