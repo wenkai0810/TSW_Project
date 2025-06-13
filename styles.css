@@ -1,94 +1,130 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(90deg, #80a5dd, #906ecf);
+  color: white;
+}
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(90deg, #80a5dd, #906ecf);
-      color: white;  /* Optional: if you want to match with dark bg */
-    }
+.navbar {
+  background: linear-gradient(90deg, #80a5dd, #906ecf);
+  color: white;
+}
 
+.navbar .navbar-brand,
+.navbar .btn {
+  color: white;
+  font-weight: bold;
+}
 
-    .navbar {
-      background: linear-gradient(90deg, #80a5dd, #906ecf);
-      color: white;
-    }
+h1, h4 {
+  color: #e0e0e0;
+}
 
-    .navbar .navbar-brand {
-      font-weight: bold;
-      color: white;
-    }
+.filter-buttons button {
+  min-width: 140px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
 
-    .navbar .btn {
-      color: white;
-    }
+.filter-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
-    h1, h4 {
-      color: #2b2d42;
-    }
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  color: white;
+}
 
-    .filter-buttons button {
-      min-width: 140px;
-    }
+.card .card-title,
+.card p {
+  color: white;
+}
 
-    .card {
-        background: rgba(255, 255, 255, 0.08); /* subtle translucent white */
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        backdrop-filter: blur(6px);
-        color: #ffffff;
-      }
+.modal-header {
+  background: linear-gradient(90deg, #0d6efd, #6f42c1);
+  color: white;
+}
 
-      .card .card-title,
-      .card p {
-        color: #ffffff;
-      }
+#adModal .modal-header {
+  background: linear-gradient(90deg, #ff6f61, #ffb347);
+}
 
+.modal-title {
+  font-weight: 600;
+}
 
-    .modal-header {
-      background: linear-gradient(90deg, #0d6efd, #6f42c1);
-      color: white;
-    }
+.btn-close {
+  filter: invert(1);
+}
 
-    .modal-title {
-      font-weight: 600;
-    }
+.modal-content {
+  background: linear-gradient(90deg, #80a5dd, #906ecf);
+  color: white;
+  border-radius: 16px;
+  border: none;
+}
 
-    .btn-close {
-      filter: invert(1);
-    }
+.modal-body input,
+.search-bar input {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
 
-    #adModal .modal-header {
-      background: linear-gradient(90deg, #ff6f61, #ffb347);
-    }
+.modal-body input::placeholder,
+.search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
 
-    .btn-danger, .btn-primary, .btn-success {
-      border-radius: 30px;
-    }
+.btn-primary,
+.btn-success,
+.btn-danger {
+  border-radius: 30px;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
 
-    .modal-content {
-      background: linear-gradient(90deg, #80a5dd, #906ecf); /* match your theme */
-      color: white;
-      border-radius: 16px;
-    }
+.btn-primary {
+  background-color: #4e8bed;
+}
 
-    .modal-body input {
-      background-color: rgba(255, 255, 255, 0.08);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 8px;
-    }
+.btn-primary:hover {
+  background-color: #3a75d3;
+}
 
-    .modal-body input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
+.btn-success {
+  background-color: #34c38f;
+}
 
-    .btn-light {
-      background-color: #ffffff;
-      color: #3a0ca3; /* or any dark color */
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      font-weight: 500;
-    }
+.btn-success:hover {
+  background-color: #2fa37c;
+}
 
-    .btn-light:hover {
-      background-color: #f0f0f0;
-      color: #3a0ca3;
-      border-color: #3a0ca3;
-    }
+.btn-danger {
+  background-color: #f46a6a;
+}
+
+.btn-danger:hover {
+  background-color: #d95454;
+}
+
+.btn-light {
+  background-color: #ffffff;
+  color: #3a0ca3;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
+.btn-light:hover {
+  background-color: #f0f0f0;
+  color: #3a0ca3;
+  border-color: #3a0ca3;
+}

@@ -53,17 +53,17 @@
     <div class="carousel-inner rounded shadow">
       <div class="carousel-item active">
         <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="maybank_advertise.mp4" type="video/mp4">
+          <source src="video/maybank_advertise.mp4" type="video/mp4">
         </video>
       </div>
       <div class="carousel-item">
         <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="maybank_advertise.mp4" type="video/mp4">
+          <source src="video/GSC_HL_advertise.mp4" type="video/mp4">
         </video>
       </div>
       <div class="carousel-item">
         <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="maybank_advertise.mp4" type="video/mp4">
+          <source src="video/HSBC_advertise.mp4" type="video/mp4">
         </video>
       </div>
     </div>
@@ -79,13 +79,25 @@
 
 
   <!-- Filter Section -->
-  <div class="container text-center mt-5 filter-buttons">
-    <h5 class="mb-3">Filter by Card Type</h5>
-    <button class="btn btn-outline-secondary m-1" onclick="filterCards('all')">All Cards</button>
-    <button class="btn btn-outline-primary m-1" onclick="filterCards('FreeCard')">Free Cards</button>
-    <button class="btn btn-outline-success m-1" onclick="filterCards('BudgetCard')">Budget Cards</button>
-    <button class="btn btn-outline-warning m-1" onclick="filterCards('PremiumCard')">Premium Cards</button>
+<div class="container mt-5">
+  <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <div class="filter-buttons mb-2">
+      <h5 class="mb-2 text-white">Filter by Card Type</h5>
+      <div>
+        <button class="btn btn-outline-secondary m-1" onclick="filterCards('all')">All Cards</button>
+        <button class="btn btn-outline-primary m-1" onclick="filterCards('FreeCard')">Free Cards</button>
+        <button class="btn btn-outline-success m-1" onclick="filterCards('BudgetCard')">Budget Cards</button>
+        <button class="btn btn-outline-warning m-1" onclick="filterCards('PremiumCard')">Premium Cards</button>
+      </div>
+    </div>
+
+    <div class="search-bar mb-2">
+      <input type="text" id="cardSearchInput" class="form-control"
+       placeholder="Search cards by name..." oninput="searchCards()" />
+    </div>
   </div>
+</div>
+
 
   <!-- Recommendations -->
   <div class="container mt-4 d-none" id="recommendationResults">

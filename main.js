@@ -1,3 +1,4 @@
+// Logout
 function logout() {
   auth.signOut().then(() => {
     alert("You have been logged out.");
@@ -5,6 +6,7 @@ function logout() {
   });
 }
 
+// Auth state handler
 firebase.auth().onAuthStateChanged(user => {
   const userStatus = document.getElementById("userStatus");
   const logoutBtn = document.getElementById("logoutBtn");
@@ -33,13 +35,12 @@ firebase.auth().onAuthStateChanged(user => {
     registerBtn.classList.remove("d-none");
     getStartedBtn?.classList.remove("d-none");
 
-    // 🔥 Show all cards when user is not logged in
     fetchAndDisplayCards(999999999, "all");
   }
 });
 
-
-document.getElementById("registerForm").addEventListener("submit", function(e) {
+// Registration
+document.getElementById("registerForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -68,7 +69,8 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     });
 });
 
-document.getElementById("loginForm").addEventListener("submit", function(e) {
+// Login
+document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
@@ -90,6 +92,9 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     });
 });
 
+// Fetch & render
+let allCardsCache = [];
+
 async function fetchAndDisplayCards(income, filterType = "all") {
   try {
     const response = await fetch("http://localhost:5000/get-cards", {
@@ -101,6 +106,7 @@ async function fetchAndDisplayCards(income, filterType = "all") {
     if (!response.ok) throw new Error("Failed to fetch cards");
 
     const cards = await response.json();
+    allCardsCache = cards;
     renderCards(cards);
   } catch (err) {
     console.error("Fetch error:", err);
@@ -114,6 +120,7 @@ function renderCards(cards) {
 
   if (!cards.length) {
     container.innerHTML = "<p class='text-center'>No cards available for this filter.</p>";
+    return;
   }
 
   cards.forEach(card => {
@@ -138,11 +145,13 @@ function renderCards(cards) {
   document.getElementById("recommendationResults").classList.remove("d-none");
 }
 
+// Filter by type
 function filterCards(type) {
-  const income = auth.currentUserIncome ?? 999999999; // fallback for guest
+  const income = auth.currentUserIncome ?? 999999999;
   fetchAndDisplayCards(income, type);
 }
 
+// Apply card
 function applyCard(cardName) {
   const user = auth.currentUser;
 
@@ -178,3 +187,28 @@ function applyCard(cardName) {
     });
   });
 }
+
+// Debounced search
+let debounceTimer;
+function searchCards() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    const keyword = document.getElementById("cardSearchInput").value.trim().toLowerCase();
+    
+    if (keyword === "") {
+      renderCards(allCardsCache); // reset view
+      return;
+    }
+
+    const filtered = allCardsCache.filter(card =>
+      card.name.toLowerCase().includes(keyword) ||
+      card.bank.toLowerCase().includes(keyword)
+    );
+
+    renderCards(filtered);
+  }, 250); // delay in ms
+}
+
+// Attach search handler
+document.getElementById("cardSearchInput").addEventListener("input", searchCards);
+
