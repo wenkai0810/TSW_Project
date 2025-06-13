@@ -43,7 +43,7 @@ cd apache-jena-fuseki-5.4.0
 ./fuseki-server
 if (no data):
   -go to http://localhost:3030
-  -create dataset -upload inikalilah.ttl then all set
+  -create dataset -upload credit_cards_data then all set
 
 # 4. Node.js Email Server (http://localhost:5050 or as defined)
 node server.js
