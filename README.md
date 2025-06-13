@@ -27,7 +27,7 @@ Ensure the following are installed:
 
 ---
 
-## 🧪 Setup and Run (For FYP Testing)
+## 🧪 Setup and Run (For TSW Project Testing)
 
 Start all services on their respective ports:
 
