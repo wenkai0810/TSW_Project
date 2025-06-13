@@ -6,22 +6,25 @@ app = Flask(__name__)
 CORS(app)
 
 def query_cards(user_income, filter_type="all"):
-    # SPARQL class clause
-    if filter_type == "FreeCard":
-        card_type_clause = "?card a :FreeCard ."
-        income_filter = ""  # No need for income filtering
-    elif filter_type == "BudgetCard":
-        card_type_clause = "?card a :BudgetCard ."
-        income_filter = ""
-    elif filter_type == "PremiumCard":
-        card_type_clause = "?card a :PremiumCard ."
-        income_filter = ""
-    else:  # "all" or unknown
+    # Class clause
+    if filter_type in ["FreeCard", "BudgetCard", "PremiumCard"]:
+        card_type_clause = f"?card a :{filter_type} ."
+    else:
         card_type_clause = "?card a :CreditCard ."
-        income_filter = f"""
-            ?card :minIncome ?income .
-            FILTER (?income <= "{user_income}"^^xsd:decimal)
-        """
+
+    # Income filter logic:
+    if filter_type == "all":
+        # only apply income filter if user is logged in
+        if user_income >= 999999999:
+            income_filter = ""  # no filtering for guest users
+        else:
+            income_filter = f"""
+                ?card :minIncome ?income .
+                FILTER (?income <= "{user_income}"^^xsd:decimal)
+            """
+    else:
+        # for class filters like BudgetCard, always return all of that class (no income filter)
+        income_filter = ""
 
     sparql_query = f"""
     PREFIX : <http://example.org/card#>
@@ -32,7 +35,7 @@ def query_cards(user_income, filter_type="all"):
       {card_type_clause}
       ?card :cardName ?cardName ;
             :bank ?bank ;
-            :minIncome ?minIncome;
+            :minIncome ?minIncome ;
             :annualFee ?annualFee ;
             :interestRate ?interestRate .
       OPTIONAL {{ ?card :imageUrl ?imageUrl }}
@@ -50,6 +53,7 @@ def query_cards(user_income, filter_type="all"):
         return {"error": "SPARQL query failed", "details": response.text}
 
     return response.json()
+
 
 
 

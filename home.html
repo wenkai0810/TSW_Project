@@ -12,59 +12,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
 
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #f8fbff, #e0f0ff);
-    }
-
-    .navbar {
-      background: linear-gradient(90deg, #0d6efd, #6f42c1);
-      color: white;
-    }
-
-    .navbar .navbar-brand {
-      font-weight: bold;
-      color: white;
-    }
-
-    .navbar .btn {
-      color: white;
-    }
-
-    h1, h4 {
-      color: #2b2d42;
-    }
-
-    .filter-buttons button {
-      min-width: 140px;
-    }
-
-    .card-title {
-      font-weight: 600;
-    }
-
-    .modal-header {
-      background: linear-gradient(90deg, #0d6efd, #6f42c1);
-      color: white;
-    }
-
-    .modal-title {
-      font-weight: 600;
-    }
-
-    .btn-close {
-      filter: invert(1);
-    }
-
-    #adModal .modal-header {
-      background: linear-gradient(90deg, #ff6f61, #ffb347);
-    }
-
-    .btn-danger, .btn-primary, .btn-success {
-      border-radius: 30px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 
   <script>
     const firebaseConfig = {
@@ -88,7 +36,7 @@
       <span id="userStatus" class="me-3 text-white"></span>
       <button id="logoutBtn" class="btn btn-outline-light me-2 d-none" onclick="logout()">Logout</button>
       <button id="loginBtn" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-      <button id="registerBtn" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+      <button id="registerBtn" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
     </div>
   </nav>
 
@@ -100,25 +48,22 @@
   </div>
 
   <!-- Place this just below the Hero Section -->
-<div class="container mt-5">
-  <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel">
+<div class="container mt-4">
+  <div id="videoCarousel" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 1110px;">
     <div class="carousel-inner rounded shadow">
       <div class="carousel-item active">
         <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="static/videos/ad1.mp4" type="video/mp4">
-          Your browser does not support the video tag.
+          <source src="maybank_advertise.mp4" type="video/mp4">
         </video>
       </div>
       <div class="carousel-item">
         <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="static/videos/ad2.mp4" type="video/mp4">
-          Your browser does not support the video tag.
+          <source src="maybank_advertise.mp4" type="video/mp4">
         </video>
       </div>
       <div class="carousel-item">
         <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="static/videos/ad3.mp4" type="video/mp4">
-          Your browser does not support the video tag.
+          <source src="maybank_advertise.mp4" type="video/mp4">
         </video>
       </div>
     </div>
@@ -130,6 +75,7 @@
     </button>
   </div>
 </div>
+
 
 
   <!-- Filter Section -->

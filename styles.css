@@ -1,0 +1,94 @@
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(90deg, #80a5dd, #906ecf);
+      color: white;  /* Optional: if you want to match with dark bg */
+    }
+
+
+    .navbar {
+      background: linear-gradient(90deg, #80a5dd, #906ecf);
+      color: white;
+    }
+
+    .navbar .navbar-brand {
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar .btn {
+      color: white;
+    }
+
+    h1, h4 {
+      color: #2b2d42;
+    }
+
+    .filter-buttons button {
+      min-width: 140px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.08); /* subtle translucent white */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+        color: #ffffff;
+      }
+
+      .card .card-title,
+      .card p {
+        color: #ffffff;
+      }
+
+
+    .modal-header {
+      background: linear-gradient(90deg, #0d6efd, #6f42c1);
+      color: white;
+    }
+
+    .modal-title {
+      font-weight: 600;
+    }
+
+    .btn-close {
+      filter: invert(1);
+    }
+
+    #adModal .modal-header {
+      background: linear-gradient(90deg, #ff6f61, #ffb347);
+    }
+
+    .btn-danger, .btn-primary, .btn-success {
+      border-radius: 30px;
+    }
+
+    .modal-content {
+      background: linear-gradient(90deg, #80a5dd, #906ecf); /* match your theme */
+      color: white;
+      border-radius: 16px;
+    }
+
+    .modal-body input {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+    }
+
+    .modal-body input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-light {
+      background-color: #ffffff;
+      color: #3a0ca3; /* or any dark color */
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+    }
+
+    .btn-light:hover {
+      background-color: #f0f0f0;
+      color: #3a0ca3;
+      border-color: #3a0ca3;
+    }

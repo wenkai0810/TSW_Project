@@ -22,8 +22,7 @@ firebase.auth().onAuthStateChanged(user => {
     db.collection("users").doc(user.uid).get().then(doc => {
       if (doc.exists) {
         const income = doc.data().income;
-        auth.currentUserIncome = income;  // Store for filtering
-        console.log("🔥 User doc:", doc.data()); 
+        auth.currentUserIncome = income;
         fetchAndDisplayCards(income, "all");
       }
     });
@@ -33,8 +32,12 @@ firebase.auth().onAuthStateChanged(user => {
     loginBtn.classList.remove("d-none");
     registerBtn.classList.remove("d-none");
     getStartedBtn?.classList.remove("d-none");
+
+    // 🔥 Show all cards when user is not logged in
+    fetchAndDisplayCards(999999999, "all");
   }
 });
+
 
 document.getElementById("registerForm").addEventListener("submit", function(e) {
   e.preventDefault();
@@ -136,18 +139,22 @@ function renderCards(cards) {
 }
 
 function filterCards(type) {
-  const income = auth.currentUserIncome;
-  if (!income) {
-    alert("User income not available.");
-    return;
-  }
+  const income = auth.currentUserIncome ?? 999999999; // fallback for guest
   fetchAndDisplayCards(income, type);
 }
 
 function applyCard(cardName) {
   const user = auth.currentUser;
-  if (!user || !user.emailVerified) {
-    alert("Please log in with a verified email to apply.");
+
+  if (!user) {
+    alert("🔒 Please register or log in to apply for a card.");
+    const registerModal = new bootstrap.Modal(document.getElementById("registerModal"));
+    registerModal.show();
+    return;
+  }
+
+  if (!user.emailVerified) {
+    alert("✉️ Please verify your email before applying.");
     return;
   }
 
