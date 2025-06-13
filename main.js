@@ -1,5 +1,3 @@
-// main.js
-
 function logout() {
   auth.signOut().then(() => {
     alert("You have been logged out.");
@@ -23,8 +21,10 @@ firebase.auth().onAuthStateChanged(user => {
 
     db.collection("users").doc(user.uid).get().then(doc => {
       if (doc.exists) {
+        const income = doc.data().income;
+        auth.currentUserIncome = income;  // Store for filtering
         console.log("🔥 User doc:", doc.data()); 
-        fetchAndDisplayCards(doc.data().income);
+        fetchAndDisplayCards(income, "all");
       }
     });
   } else {
@@ -87,28 +87,45 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     });
 });
 
-async function fetchAndDisplayCards(income) {
-  const response = await fetch("http://localhost:5000/get-cards", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ income })
-  });
+async function fetchAndDisplayCards(income, filterType = "all") {
+  try {
+    const response = await fetch("http://localhost:5000/get-cards", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ income, filterType })
+    });
 
-  const cards = await response.json();
+    if (!response.ok) throw new Error("Failed to fetch cards");
+
+    const cards = await response.json();
+    renderCards(cards);
+  } catch (err) {
+    console.error("Fetch error:", err);
+    alert("❌ Failed to load recommendations.");
+  }
+}
+
+function renderCards(cards) {
   const container = document.getElementById("cardsContainer");
   container.innerHTML = "";
 
+  if (!cards.length) {
+    container.innerHTML = "<p class='text-center'>No cards available for this filter.</p>";
+  }
+
   cards.forEach(card => {
     container.innerHTML += `
-      <div class="col-md-6">
-        <div class="card mb-3">
-          <img src="${card.imageUrl}" class="card-img-top" alt="${card.name} Image" style="height:200px; object-fit:contain; background:#f9f9f9;">
-          <div class="card-body">
-            <h5 class="card-title">${card.name}</h5>
-            <p class="card-text">Bank: ${card.bank}</p>
-            <p class="card-text">Annual Fee: RM${card.annualFee}</p>
-            <p class="card-text">Interest Rate: ${card.interestRate}% p.a.</p>
-            <button class="btn btn-success" onclick="applyCard('${card.name}')">Apply Now</button>
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="${card.imageUrl}" class="card-img-top" alt="${card.name} Image"
+               style="max-height: 80px; object-fit: contain; background:#f9f9f9;">
+          <div class="card-body p-2">
+            <h6 class="card-title mb-1" style="font-size: 0.9rem;">${card.name}</h6>
+            <p class="mb-0" style="font-size: 0.8rem;">Bank: ${card.bank}</p>
+            <p class="mb-0" style="font-size: 0.8rem;">Annual Fee: RM${card.annualFee}</p>
+            <p class="mb-0" style="font-size: 0.8rem;">Interest Rate: ${card.interestRate}% p.a.</p>
+            <p class="mb-0" style="font-size: 0.8rem;">Min Income: RM${card.minIncome}</p>
+            <button class="btn btn-success btn-sm w-100" onclick="applyCard('${card.name}')">Apply Now</button>
           </div>
         </div>
       </div>
@@ -116,6 +133,15 @@ async function fetchAndDisplayCards(income) {
   });
 
   document.getElementById("recommendationResults").classList.remove("d-none");
+}
+
+function filterCards(type) {
+  const income = auth.currentUserIncome;
+  if (!income) {
+    alert("User income not available.");
+    return;
+  }
+  fetchAndDisplayCards(income, type);
 }
 
 function applyCard(cardName) {

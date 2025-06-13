@@ -3,23 +3,40 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-CORS(app)  # Allow cross-origin requests from your frontend
+CORS(app)
 
-# Query cards from Apache Jena Fuseki
-def query_cards(user_income):
+def query_cards(user_income, filter_type="all"):
+    # SPARQL class clause
+    if filter_type == "FreeCard":
+        card_type_clause = "?card a :FreeCard ."
+        income_filter = ""  # No need for income filtering
+    elif filter_type == "BudgetCard":
+        card_type_clause = "?card a :BudgetCard ."
+        income_filter = ""
+    elif filter_type == "PremiumCard":
+        card_type_clause = "?card a :PremiumCard ."
+        income_filter = ""
+    else:  # "all" or unknown
+        card_type_clause = "?card a :CreditCard ."
+        income_filter = f"""
+            ?card :minIncome ?income .
+            FILTER (?income <= "{user_income}"^^xsd:decimal)
+        """
+
     sparql_query = f"""
     PREFIX : <http://example.org/card#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT ?cardName ?bank ?annualFee ?imageUrl ?interestRate
+
+    SELECT ?cardName ?bank ?annualFee ?imageUrl ?interestRate ?minIncome
     WHERE {{
-      ?card a :CreditCard ;
-            :cardName ?cardName ;
+      {card_type_clause}
+      ?card :cardName ?cardName ;
             :bank ?bank ;
-            :minIncome ?income ;
+            :minIncome ?minIncome;
             :annualFee ?annualFee ;
             :interestRate ?interestRate .
       OPTIONAL {{ ?card :imageUrl ?imageUrl }}
-      FILTER (?income <= "{user_income}"^^xsd:decimal)
+      {income_filter}
     }}
     """
 
@@ -35,13 +52,15 @@ def query_cards(user_income):
     return response.json()
 
 
+
 @app.route('/get-cards', methods=['POST'])
 def get_cards():
     data = request.get_json()
     income = data.get("income", 0)
-    print("🚀 Income received:", income)
+    filter_type = data.get("filterType", "all")
+    print(f"🚀 Income: {income}, Filter: {filter_type}")
 
-    results = query_cards(income)
+    results = query_cards(income, filter_type)
     print("🔎 Raw SPARQL response:", results)
 
     if "error" in results:
@@ -55,6 +74,7 @@ def get_cards():
             "bank": binding["bank"]["value"],
             "annualFee": binding["annualFee"]["value"],
             "interestRate": binding["interestRate"]["value"],
+            "minIncome": binding["minIncome"]["value"], 
             "imageUrl": binding.get("imageUrl", {}).get("value", "")
         }
         cards.append(card)

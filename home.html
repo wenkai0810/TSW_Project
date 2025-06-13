@@ -12,6 +12,60 @@
   <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
 
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f8fbff, #e0f0ff);
+    }
+
+    .navbar {
+      background: linear-gradient(90deg, #0d6efd, #6f42c1);
+      color: white;
+    }
+
+    .navbar .navbar-brand {
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar .btn {
+      color: white;
+    }
+
+    h1, h4 {
+      color: #2b2d42;
+    }
+
+    .filter-buttons button {
+      min-width: 140px;
+    }
+
+    .card-title {
+      font-weight: 600;
+    }
+
+    .modal-header {
+      background: linear-gradient(90deg, #0d6efd, #6f42c1);
+      color: white;
+    }
+
+    .modal-title {
+      font-weight: 600;
+    }
+
+    .btn-close {
+      filter: invert(1);
+    }
+
+    #adModal .modal-header {
+      background: linear-gradient(90deg, #ff6f61, #ffb347);
+    }
+
+    .btn-danger, .btn-primary, .btn-success {
+      border-radius: 30px;
+    }
+  </style>
+
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyBJxAjy8JSSTEymui7F8ROlAd93x1ObXIQ",
@@ -28,21 +82,69 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light justify-content-between px-4">
+  <nav class="navbar navbar-light justify-content-between px-4 py-2 shadow">
     <a class="navbar-brand">SmartCardMY</a>
     <div>
-      <span id="userStatus" class="me-3"></span>
-      <button id="logoutBtn" class="btn btn-outline-danger me-2 d-none" onclick="logout()">Logout</button>
-      <button id="loginBtn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-      <button id="registerBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+      <span id="userStatus" class="me-3 text-white"></span>
+      <button id="logoutBtn" class="btn btn-outline-light me-2 d-none" onclick="logout()">Logout</button>
+      <button id="loginBtn" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+      <button id="registerBtn" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
     </div>
   </nav>
 
-  <!-- Home Section -->
-  <div class="container mt-5 text-center">
-    <h1>Welcome to SmartCardMY</h1>
-    <p>Find the best credit card in Malaysia based on your income.</p>
-    <button id="getStartedBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registerModal">Get Started</button>
+  <!-- Hero Section -->
+  <div class="container text-center mt-5">
+    <h1 class="mb-3">Welcome to SmartCardMY</h1>
+    <p class="lead mb-4">Find the best credit card in Malaysia based on your income and preferences.</p>
+    <button id="getStartedBtn" class="btn btn-success px-4 py-2" data-bs-toggle="modal" data-bs-target="#registerModal">Get Started</button>
+  </div>
+
+  <!-- Place this just below the Hero Section -->
+<div class="container mt-5">
+  <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner rounded shadow">
+      <div class="carousel-item active">
+        <video class="d-block w-100 rounded" autoplay muted loop playsinline>
+          <source src="static/videos/ad1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100 rounded" autoplay muted loop playsinline>
+          <source src="static/videos/ad2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100 rounded" autoplay muted loop playsinline>
+          <source src="static/videos/ad3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
+
+  <!-- Filter Section -->
+  <div class="container text-center mt-5 filter-buttons">
+    <h5 class="mb-3">Filter by Card Type</h5>
+    <button class="btn btn-outline-secondary m-1" onclick="filterCards('all')">All Cards</button>
+    <button class="btn btn-outline-primary m-1" onclick="filterCards('FreeCard')">Free Cards</button>
+    <button class="btn btn-outline-success m-1" onclick="filterCards('BudgetCard')">Budget Cards</button>
+    <button class="btn btn-outline-warning m-1" onclick="filterCards('PremiumCard')">Premium Cards</button>
+  </div>
+
+  <!-- Recommendations -->
+  <div class="container mt-4 d-none" id="recommendationResults">
+    <h4 class="mb-4">Recommended Credit Cards</h4>
+    <div id="cardsContainer" class="row"></div>
   </div>
 
   <!-- Advertisement Modal -->
@@ -57,7 +159,7 @@
           <img src="https://i.pinimg.com/564x/32/30/15/32301584d1103e1ae4c93c02befc26fb.jpg" 
                alt="Promo" class="img-fluid mb-3" style="max-height: 200px;" />
           <p class="lead">Apply today and enjoy RM100 cashback with 0% interest on balance transfers!</p>
-          <a href="#" class="btn btn-danger mt-2">Apply Now</a>
+          <a href="#" class="btn btn-danger px-4">Apply Now</a>
         </div>
       </div>
     </div>
@@ -83,11 +185,11 @@
             </div>
             <div class="mb-3">
               <label for="income" class="form-label">Monthly Income (MYR)</label>
-              <input type="number" class="form-control" id="income" required />
+              <input type="number" class="form-control" id="income" min="0" required />
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
           </div>
         </form>
       </div>
@@ -114,17 +216,11 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
           </div>
         </form>
       </div>
     </div>
-  </div>
-
-  <!-- Recommendation Results -->
-  <div class="container mt-5 d-none" id="recommendationResults">
-    <h4>Recommended Credit Cards</h4>
-    <div id="cardsContainer" class="row"></div>
   </div>
 
   <!-- JS: Auto-show Ad Modal -->

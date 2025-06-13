@@ -1,0 +1,3346 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ongwenkai/ontologies/2025/5/untitled-ontology-18#"
+     xml:base="http://www.semanticweb.org/ongwenkai/ontologies/2025/5/untitled-ontology-18"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:card="http://example.org/card#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ongwenkai/ontologies/2025/5/untitled-ontology-18"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/card#annualFee -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/card#annualFee">
+        <rdfs:domain rdf:resource="http://example.org/card#CreditCard"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/card#bank -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/card#bank">
+        <rdfs:domain rdf:resource="http://example.org/card#CreditCard"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/card#cardName -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/card#cardName">
+        <rdfs:domain rdf:resource="http://example.org/card#CreditCard"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/card#imageUrl -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/card#imageUrl">
+        <rdfs:domain rdf:resource="http://example.org/card#CreditCard"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/card#interestRate -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/card#interestRate">
+        <rdfs:domain rdf:resource="http://example.org/card#CreditCard"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/card#minIncome -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/card#minIncome">
+        <rdfs:domain rdf:resource="http://example.org/card#CreditCard"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/card#BudgetCard -->
+
+    <owl:Class rdf:about="http://example.org/card#BudgetCard">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://example.org/card#LowIncomeCard"/>
+                    <rdf:Description rdf:about="http://example.org/card#LowInterestCard"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <rdfs:subClassOf rdf:resource="http://example.org/card#LowInterestCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#HighInterestCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#PremiumCard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/card#CreditCard -->
+
+    <owl:Class rdf:about="http://example.org/card#CreditCard"/>
+    
+
+
+    <!-- http://example.org/card#FreeCard -->
+
+    <owl:Class rdf:about="http://example.org/card#FreeCard">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://example.org/card#CreditCard"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://example.org/card#annualFee"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://example.org/card#CreditCard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/card#HighIncomeCard -->
+
+    <owl:Class rdf:about="http://example.org/card#HighIncomeCard">
+        <rdfs:subClassOf rdf:resource="http://example.org/card#CreditCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#MidIncomeCard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/card#HighInterestCard -->
+
+    <owl:Class rdf:about="http://example.org/card#HighInterestCard">
+        <rdfs:subClassOf rdf:resource="http://example.org/card#CreditCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#LowInterestCard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/card#LowIncomeCard -->
+
+    <owl:Class rdf:about="http://example.org/card#LowIncomeCard">
+        <rdfs:subClassOf rdf:resource="http://example.org/card#CreditCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#PremiumCard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/card#LowInterestCard -->
+
+    <owl:Class rdf:about="http://example.org/card#LowInterestCard">
+        <rdfs:subClassOf rdf:resource="http://example.org/card#CreditCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#PremiumCard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/card#MidIncomeCard -->
+
+    <owl:Class rdf:about="http://example.org/card#MidIncomeCard">
+        <rdfs:subClassOf rdf:resource="http://example.org/card#CreditCard"/>
+        <owl:disjointWith rdf:resource="http://example.org/card#PremiumCard"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/card#PremiumCard -->
+
+    <owl:Class rdf:about="http://example.org/card#PremiumCard">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://example.org/card#HighIncomeCard"/>
+                    <rdf:Description rdf:about="http://example.org/card#HighInterestCard"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdfs:subClassOf rdf:resource="http://example.org/card#HighInterestCard"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/card#AFFINBHPetrolMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINBHPetrolMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Affin Bank</card:bank>
+        <card:cardName>AFFIN BHPetrol MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000014.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINDUOMastercardRewards -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINDUOMastercardRewards">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Affin Bank</card:bank>
+        <card:cardName>AFFIN DUO Mastercard Rewards</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5f5a064db2a9381d10775b80.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINDUOVisaCashBack -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINDUOVisaCashBack">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Affin Bank</card:bank>
+        <card:cardName>AFFIN DUO Visa Cash Back</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5f5a03adb2a9381d10775b7e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINMasterCardGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINMasterCardGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Affin Bank</card:bank>
+        <card:cardName>AFFIN MasterCard Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000010.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINMastercardBasic-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINMastercardBasic-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Affin Islamic Bank</card:bank>
+        <card:cardName>AFFIN Mastercard Basic-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5b7675b2d1077cae0c812044.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINMastercardGold-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINMastercardGold-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Affin Islamic Bank</card:bank>
+        <card:cardName>AFFIN Mastercard Gold-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5b767bfcd1077cae0c812049.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINPlatinumMastercard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINPlatinumMastercard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Affin Islamic Bank</card:bank>
+        <card:cardName>AFFIN Platinum Mastercard-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5b767ef0d1077cae0c81204d.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINVisaBusinessPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINVisaBusinessPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Affin Bank</card:bank>
+        <card:cardName>AFFIN Visa Business Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5c78e50cb0c2a00b65590b1c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINVisaBusinessPlatinum-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINVisaBusinessPlatinum-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Affin Islamic Bank</card:bank>
+        <card:cardName>AFFIN Visa Business Platinum-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5c872981d564be6332e416a5.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Affin Bank</card:bank>
+        <card:cardName>AFFIN Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000011.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINWorldMastercard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINWorldMastercard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Affin Bank</card:bank>
+        <card:cardName>AFFIN World Mastercard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/53c8a6d3f2d42521322f2820.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AFFINWorldMastercard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AFFINWorldMastercard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Affin Islamic Bank</card:bank>
+        <card:cardName>AFFIN World Mastercard-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5b76805fd1077cae0c81204f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonBiGVisaClassic -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonBiGVisaClassic">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON BiG Visa Classic</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/565d8b437c3b559945f525a4.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonBigVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonBigVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON BiG Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/565d7a5c7c3b559945f5257e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonMasterCardClassic -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonMasterCardClassic">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON MasterCard Classic</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000005.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonMasterCardGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonMasterCardGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON MasterCard Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000003.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonPlatinumMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonPlatinumMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON Platinum MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5badee25bf72ec1126f9cb47.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonPlatinumVisa -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonPlatinumVisa">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON Platinum Visa</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5ab4a9dc2af8f39d1adf1434.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonTheJapanClubOfKualaLumpurVisa -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonTheJapanClubOfKualaLumpurVisa">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON The Japan Club of Kuala Lumpur Visa</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5892dd927244082635c2913b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonVisaClassic -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonVisaClassic">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON Visa Classic</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00000b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AeonVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AeonVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>AEON</card:bank>
+        <card:cardName>AEON Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000009.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AllianceBankVisaBasic -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AllianceBankVisaBasic">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Alliance Bank</card:bank>
+        <card:cardName>Alliance Bank Visa Basic</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/563c8f8fbca607d01210d545.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AllianceBankVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AllianceBankVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Alliance Bank</card:bank>
+        <card:cardName>Alliance Bank Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000022.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AllianceBankVisaInfiniteBusinessCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AllianceBankVisaInfiniteBusinessCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Alliance Bank</card:bank>
+        <card:cardName>Alliance Bank Visa Infinite Business Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/57035f4bbe80fc636acbfac0.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AllianceBankVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AllianceBankVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Alliance Bank</card:bank>
+        <card:cardName>Alliance Bank Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000024.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AllianceBankVisaSignature -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AllianceBankVisaSignature">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Alliance Bank</card:bank>
+        <card:cardName>Alliance Bank Visa Signature</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/6170288db89bc7fe1ad4af76.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AllianceBankVisaVirtualCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AllianceBankVisaVirtualCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Alliance Bank</card:bank>
+        <card:cardName>Alliance Bank Visa Virtual Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/642e7c69056b64660333e503.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankBonusLinkVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankBonusLinkVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank BonusLink Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/590ae38dc110f4691a8062d3.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankBonusLinkVisaSignature -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankBonusLinkVisaSignature">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank BonusLink Visa Signature</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/590af1db32d5e6fa36da31e8.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankCashRebateVisaPlatinumCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankCashRebateVisaPlatinumCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Cash Rebate Visa Platinum Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5f88003140679bd7123bd035.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankIslamicVisaInfiniteCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankIslamicVisaInfiniteCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Islamic Visa Infinite Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00003d.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankIslamicVisaPlatinumCARzCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankIslamicVisaPlatinumCARzCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Islamic Visa Platinum CARz Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5fc7424981f128e811b9bb2a.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankIslamicVisaPlatinumCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankIslamicVisaPlatinumCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Islamic Visa Platinum Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00003f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankIslamicVisaSignatureCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankIslamicVisaSignatureCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Islamic Visa Signature Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00003e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankSIGNATUREPriorityBankingVisaInfiniteCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankSIGNATUREPriorityBankingVisaInfiniteCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank SIGNATURE Priority Banking Visa Infinite Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5dea0276e55d3cd66208049b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankUnionPayPlatinumCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankUnionPayPlatinumCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank UnionPay Platinum Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5dc53ebcc22711c828d18a6c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000037.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankVisaPlatinumCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankVisaPlatinumCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Visa Platinum Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00003b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#AmBankVisaSignatureCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#AmBankVisaSignatureCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>AmBank</card:bank>
+        <card:cardName>AmBank Visa Signature Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000038.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSN-AIAFAMVisaPlatinumCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSN-AIAFAMVisaPlatinumCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN-AIAFAM Visa Platinum Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/562f05b34a4eade933d5f913.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSN1TeachersCardMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSN1TeachersCardMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#BudgetCard"/>
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN 1 TeachersCard MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.88</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00005e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSN1TeachersCardMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSN1TeachersCardMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#BudgetCard"/>
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN 1 TeachersCard MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.88</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/551930d8ebbe192a7a6ef813.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNClassicMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNClassicMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Classic MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00005f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNClassicMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNClassicMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Classic MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/554864552097f5c41eb83bde.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNClassicVisa -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNClassicVisa">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Classic Visa</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000061.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNClassicVisaCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNClassicVisaCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Classic Visa Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/55484c7f2097f5c41eb83bdc.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNG-CardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNG-CardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#BudgetCard"/>
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN G-Card Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.88</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5cac4d20cbf9fb7115cddf6c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNG-CardVisaCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNG-CardVisaCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#BudgetCard"/>
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN G-Card Visa Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.88</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5cac4a7e5230859769b622f9.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNGoldMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNGoldMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Gold MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00005d.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNGoldMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNGoldMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Gold MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/554840c62097f5c41eb83bd9.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNGoldVisa -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNGoldVisa">
+        <rdf:type rdf:resource="http://example.org/card#BudgetCard"/>
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Gold Visa</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.88</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000064.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNGoldVisaCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNGoldVisaCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Gold Visa Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/55483f4fad74384473a93ad9.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNPlatinumMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNPlatinumMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Platinum MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000058.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNPlatinumMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNPlatinumMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Platinum MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000059.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNPlatinumVisaCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNPlatinumVisaCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Platinum Visa Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52d7c28387d70ef56d109926.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNVisaCashBackCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNVisaCashBackCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Visa Cash Back Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5fd3197981f128e811b9bb60.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BSNVisaPlatinum-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BSNVisaPlatinum-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>BSN Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52d7bd7987d70ef56d10991f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankIslamMastercardPlatinumCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankIslamMastercardPlatinumCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Bank Islam</card:bank>
+        <card:cardName>Bank Islam Mastercard Platinum Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000053.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankIslamMastercardWorldCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankIslamMastercardWorldCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Bank Islam</card:bank>
+        <card:cardName>Bank Islam Mastercard World Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000052.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankIslamMastercardoldCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankIslamMastercardoldCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Bank Islam</card:bank>
+        <card:cardName>Bank Islam Mastercard Gold Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00004f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankIslamVisaGoldCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankIslamVisaGoldCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Bank Islam</card:bank>
+        <card:cardName>Bank Islam Visa Gold Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000050.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankIslamVisaInfiniteBusinessCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankIslamVisaInfiniteBusinessCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Bank Islam</card:bank>
+        <card:cardName>Bank Islam Visa Infinite Business Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/586c9d5e9482ad7e26fceab8.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankIslamVisaInfiniteCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankIslamVisaInfiniteCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Bank Islam</card:bank>
+        <card:cardName>Bank Islam Visa Infinite Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/56051c5234a4e55376a16124.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankIslamVisaPlatinumCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankIslamVisaPlatinumCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Bank Islam</card:bank>
+        <card:cardName>Bank Islam Visa Platinum Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5295b80e28ea575849002407.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankRakyatMuslimahCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankRakyatMuslimahCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Bank Rakyat</card:bank>
+        <card:cardName>Bank Rakyat Muslimah Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5892f2627244082635c2913d.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankRakyatPlatinumCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankRakyatPlatinumCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Bank Rakyat</card:bank>
+        <card:cardName>Bank Rakyat Gold Credit Card-i</card:cardName>
+        <card:cardName>Bank Rakyat Platinum Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000056.jpg"/>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/563980363c97b2d92da60d90.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#BankRakyatPlatinumExplorerCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#BankRakyatPlatinumExplorerCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Bank Rakyat</card:bank>
+        <card:cardName>Bank Rakyat Platinum Explorer Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5d9ff9a04945eeac7b690da5.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBCashRebatePlatinumCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBCashRebatePlatinumCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Cash Rebate Platinum Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/51e3dc8bd24bc60868000001.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBIslamicMasterCardPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBIslamicMasterCardPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Islamic MasterCard Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00007a.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBPETRONASVisaInfinite-iCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBPETRONASVisaInfinite-iCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB PETRONAS Visa Infinite-i Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64ec266e909d473f02007ab6.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBPETRONASVisaPlatinum-iCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBPETRONASVisaPlatinum-iCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB PETRONAS Visa Platinum-i Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64ec25e4909d473f02007ab4.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBPetronasPlatinumMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBPetronasPlatinumMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Petronas Platinum MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000067.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBPlatinumBusinessCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBPlatinumBusinessCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Platinum BusinessCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000071.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBPlatinumCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBPlatinumCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Platinum Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000076.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBPreferredVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBPreferredVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Preferred Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/533281e6dc39712b6c00000e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBTravelPlatinumCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBTravelPlatinumCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Travel Platinum Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64ec26f1909d473f02007ab8.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBTravelWorldCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBTravelWorldCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Travel World Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64ec27ee909d473f02007aba.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBTravelWorldEliteCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBTravelWorldEliteCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Travel World Elite Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">20833.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64ec285f909d473f02007abc.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000074.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBVisaSignature -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBVisaSignature">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB Visa Signature</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00006b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBWorldMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBWorldMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB World MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00006c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#CIMBeCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#CIMBeCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>CIMB</card:bank>
+        <card:cardName>CIMB e Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5eec7e8eab6acc96484ae826.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#GSCHongLeongGoldVisa -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#GSCHongLeongGoldVisa">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>GSC - Hong Leong Gold Visa</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000b7.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#GSCHongLeongPlatinumVisa -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#GSCHongLeongPlatinumVisa">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>GSC - Hong Leong Platinum Visa</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000b8.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCAmanahMPowerPlatinumCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCAmanahMPowerPlatinumCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC Amanah MPower Platinum Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000e1.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCAmanahPremierWorldMastercardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCAmanahPremierWorldMastercardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC Amanah Premier World Mastercard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000db.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCLiveCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCLiveCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC Live+ Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/667d1aa8df7bc6034d9258b7.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCPlatinumCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCPlatinumCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC Platinum Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000e3.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCPremierTravelCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCPremierTravelCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC Premier Travel Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/58bfe18b38697197252abc24.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCPremierWorldMastercardCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCPremierWorldMastercardCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC Premier World Mastercard Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000de.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCTravelOneCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCTravelOneCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC TravelOne Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/6465aef8f1e28a024967bcdd.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HSBCVisaSignatureCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HSBCVisaSignatureCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>HSBC</card:bank>
+        <card:cardName>HSBC Visa Signature Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000dd.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HongLeongEssentialCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HongLeongEssentialCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>Hong Leong Essential Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000d6.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HongLeongImCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HongLeongImCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>Hong Leong I&apos;m Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/552b421e81576f1f3d29c7ca.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HongLeongSuteraPlatinumCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HongLeongSuteraPlatinumCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>Hong Leong Sutera Platinum Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/56a874d842df52bf63de741b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HongLeongVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HongLeongVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>Hong Leong Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52de431e78d623a405002db3.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HongLeongVisaInfiniteDoctorsEdition -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HongLeongVisaInfiniteDoctorsEdition">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>Hong Leong Visa Infinite Doctor&apos;s Edition</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5dd64321746d443b4aeae1ed.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HongLeongVisaInfiniteP -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HongLeongVisaInfiniteP">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>Hong Leong Visa Infinite P</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52de46d478d623a405002db7.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#HongLeongWiseCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#HongLeongWiseCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Hong Leong Bank</card:bank>
+        <card:cardName>Hong Leong Wise Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000d9.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#ICBCUnionPayDualCurrencyClassic -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#ICBCUnionPayDualCurrencyClassic">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>ICBC</card:bank>
+        <card:cardName>ICBC UnionPay Dual Currency Classic</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52ca7134974308c9730027f7.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#ICBCUnionPayDualCurrencyGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#ICBCUnionPayDualCurrencyGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>ICBC</card:bank>
+        <card:cardName>ICBC UnionPay Dual Currency Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52ca7d3b974308c97300470a.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#ICBCUnionPayDualCurrencyPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#ICBCUnionPayDualCurrencyPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>ICBC</card:bank>
+        <card:cardName>ICBC UnionPay Dual Currency Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52ca8ca40a0eabfd19003ff1.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#ICBCVisaClassic -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#ICBCVisaClassic">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>ICBC</card:bank>
+        <card:cardName>ICBC Visa Classic</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52cbb079725695036c0009ec.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#ICBCVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#ICBCVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>ICBC</card:bank>
+        <card:cardName>ICBC Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52cbb612725695036c001b38.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#ICBCVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#ICBCVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>ICBC</card:bank>
+        <card:cardName>ICBC Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52cbc69a8dbd98902100116c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#LazadaUOBCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#LazadaUOBCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>Lazada UOB Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64cc8262909d473f0200798b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#Maybank2CardsPremier -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#Maybank2CardsPremier">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank 2 Cards Premier</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/53327be0dc39712b6c00000c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#Maybank2GoldCards-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#Maybank2GoldCards-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank 2 Gold Cards</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000f5.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#Maybank2PlatinumCards -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#Maybank2PlatinumCards">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank 2 Platinum Cards</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000f7.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankAmericanExpressCashBackGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankAmericanExpressCashBackGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank American Express Cash Back Gol</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/599fd556c1a2c40f50a6e646.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankAmericanExpressPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankAmericanExpressPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank American Express Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000100.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankFCBarcelonaVisaSignature -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankFCBarcelonaVisaSignature">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank FC Barcelona Visa Signature</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/59ef11f1511e6e271733223d.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankGrabMastercardPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankGrabMastercardPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Grab Mastercard Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5f45eb359224a5a83ac04e14.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicIkhwanAmericanExpressPlatinumCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicIkhwanAmericanExpressPlatinumCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Islamic Ikhwan American Express Platinum Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000ff.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicIkhwanVisaInfiniteCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicIkhwanVisaInfiniteCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Islamic Ikhwan Visa Infinite Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000ea.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicMasterCardIkhwanGoldCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicMasterCardIkhwanGoldCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Islamic MasterCard Ikhwan Gold Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/54feb7d0fd1ef36571cfff76.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicMasterCardIkhwanPlatinumCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicMasterCardIkhwanPlatinumCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Islamic MasterCard Ikhwan Platinum Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/54feb188bc1ea1de43cbd9eb.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicPetronasIkhwanVisaGoldCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicPetronasIkhwanVisaGoldCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Islamic Petronas Ikhwan Visa Gold Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000e7.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicPetronasIkhwanVisaPlatinumCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicPetronasIkhwanVisaPlatinumCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank American Express Cash Back Gol</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000e8.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicWorldMastercardIkhwan -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicWorldMastercardIkhwan">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Islamic World Mastercard Ikhwan</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5c874371f50752ac33dae6bb.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankIslamicmyimpactIkhwanMastercardPlatinumCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankIslamicmyimpactIkhwanMastercardPlatinumCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Islamic myimpact Ikhwan Mastercard Platinum Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/659b7b9f38d9f7d624f14f98.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankManchesterUnitedVisaCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankManchesterUnitedVisaCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Manchester United Visa Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000e4.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankManchesterUnitedVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankManchesterUnitedVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Manchester United Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/51ab5e7dba98fe5611000020.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankShopeeVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankShopeeVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Shopee Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5efb15f04e3602772bc1dbc2.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000eb.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankVisaSignature-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankVisaSignature-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank Visa Signature</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5833.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/54bf212f6a3668363f2c4e56.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankWorldMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankWorldMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank World MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000ec.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MaybankmyimpactVisaSignatureCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MaybankmyimpactVisaSignatureCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Maybank myimpact Visa Signature Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/659b79bb38d9f7d624f14f96.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MutualGoldPublicBankVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MutualGoldPublicBankVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Mutual Gold Public Bank Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00011f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#MyEG-RHBCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#MyEG-RHBCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>MyEG-RHB Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/53a16876bf33a92c17deb1f3.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#OCBC365MasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#OCBC365MasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>OCBC</card:bank>
+        <card:cardName>OCBC 365 MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/55026529cdba705925412fc8.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#OCBCCashfloMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#OCBCCashfloMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>OCBC</card:bank>
+        <card:cardName>OCBC Cashflo MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/588831d6b8bc79665cc8a042.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#OCBCGreatEasternPlatinumMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#OCBCGreatEasternPlatinumMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>OCBC</card:bank>
+        <card:cardName>OCBC Great Eastern Platinum MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00010e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#OCBCPremierVoyageMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#OCBCPremierVoyageMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>OCBC</card:bank>
+        <card:cardName>OCBC Premier Voyage MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5747c678db5852055504a184.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#OCBCTitaniumMasterCardBlue -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#OCBCTitaniumMasterCardBlue">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>OCBC</card:bank>
+        <card:cardName>OCBC Titanium MasterCard Pink</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/539173d91aefae303d8bd6b4.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#OCBCTitaniumMasterCardPink -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#OCBCTitaniumMasterCardPink">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>OCBC</card:bank>
+        <card:cardName>OCBC Titanium MasterCard Pink</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5396c9098ff8f5a04f5f3407.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#OCBCWorldMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#OCBCWorldMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>OCBC</card:bank>
+        <card:cardName>OCBC World MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/529d7ab195dae3756f000d22.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PetronasMaybankVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PetronasMaybankVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Petronas Maybank Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000e6.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PetronasMaybankVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PetronasMaybankVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Petronas Maybank Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000f6.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankAIAVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankAIAVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank AIA Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/51cc0764d9d93fa811000001.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankGoldMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankGoldMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Gold MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000119.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankPetronVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankPetronVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Petron Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/55274c2e628926785afd1870.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankPlatinumMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankPlatinumMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Platinum MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4166.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00011b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankQuantumMasterCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankQuantumMasterCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Quantum MasterCard</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/58e1c10e6b5269dd048aeaeb.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankQuantumVisa -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankQuantumVisa">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Quantum Visa</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/58e1b9f94069a6115d57cc53.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankVisaBusiness -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankVisaBusiness">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Visa Business</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/587ef0e0d1b0d5a9095feb65.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankVisaCommercial -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankVisaCommercial">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Visa Commercial</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">18.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/52cfce0c87d70ef56d00dca2.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankVisaGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankVisaGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Visa Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00011a.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000120.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4166.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00011c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankVisaSignature -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankVisaSignature">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank Visa Signature</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/537eea2c06a589d1189a6e0c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicBankWorldMasterCardCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicBankWorldMasterCardCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Bank World MasterCard Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/56d5232da05af65b5dced483.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicIslamicBankGoldMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicIslamicBankGoldMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Islamic Bank Gold MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/54d89ae8aff7f54d6702664b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicIslamicBankPlatinumMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicIslamicBankPlatinumMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Islamic Bank Platinum MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/54d9a832a556ca1e2c352859.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicIslamicBankVisaGoldCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicIslamicBankVisaGoldCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Islamic Bank Visa Gold Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/54d9c649f951fb0066e61f4b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#PublicIslamicBankVisaPlatinumCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#PublicIslamicBankVisaPlatinumCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Public Bank</card:bank>
+        <card:cardName>Public Islamic Bank Visa Platinum Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/54d9e0fc6b4be6cc17227f63.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBCashBackMasterCardCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBCashBackMasterCardCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Cash Back MasterCard Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5bd7d39d3d6823080f31967e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBCashBackVisaCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBCashBackVisaCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Cash Back Visa Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5bd7cfde3d6823080f31967c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBCorporateCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBCorporateCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Corporate Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/63744931eac392487a76c65d.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBIslamicCashBackCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBIslamicCashBackCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Islamic Cash Back Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5bd7d7d0fea5d39b106cd0a5.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBIslamicRewardsMotionCodeCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBIslamicRewardsMotionCodeCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Islamic Rewards Motion Code Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5d9f218b4945eeac7b690d9c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBIslamicRewardsVisaCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBIslamicRewardsVisaCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Islamic Rewards Visa Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5bd8358efea5d39b106cd0b5.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBPremierVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBPremierVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Premier Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/586c76d19482ad7e26fceab4.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBRewardsMasterCardCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBRewardsMasterCardCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Rewards MasterCard Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5bd82a4bfea5d39b106cd0b1.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBRewardsMotionCodeCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBRewardsMotionCodeCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Rewards Motion Code Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5d9f04504945eeac7b690d89.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBRewardsVisaCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBRewardsVisaCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Rewards Visa Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5bd7e773fea5d39b106cd0a7.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBShellVisaCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBShellVisaCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Shell Visa Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/60d06b4905b5ace701fb9a72.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBShellVisaCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBShellVisaCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Shell Visa Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/63918728847cf2941726e77a.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12500.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00012c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBVisaSignature -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBVisaSignature">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB Visa Signature</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/51c028adcd7c300920000004.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBWorldMasterCardCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBWorldMasterCardCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB World MasterCard Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/56d94e05e7a1074832bdd147.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#RHBWorldMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#RHBWorldMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>RHB</card:bank>
+        <card:cardName>RHB World MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6666.67</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5807030fe5881d466bf8f5df.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#SingaporeAirlinesKrisFlyerAmericanExpressGold -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#SingaporeAirlinesKrisFlyerAmericanExpressGold">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Singapore Airlines KrisFlyer American Express Gold</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a0000fb.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#SingaporeAirlinesKrisFlyerAmericanExpressPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#SingaporeAirlinesKrisFlyerAmericanExpressPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>Maybank</card:bank>
+        <card:cardName>Singapore Airlines KrisFlyer American Express Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/624d3313fa6312da5aafee6c.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#StandardCharteredJourneyCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#StandardCharteredJourneyCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Standard Chartered</card:bank>
+        <card:cardName>Standard Chartered Journey Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000147.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#StandardCharteredPlatinumMasterCardBasic -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#StandardCharteredPlatinumMasterCardBasic">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>Standard Chartered</card:bank>
+        <card:cardName>Standard Chartered Platinum MasterCard Basic</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/5afe8d28138a1002029084de.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#StandardCharteredPriorityBankingVisaInfinite -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#StandardCharteredPriorityBankingVisaInfinite">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>Standard Chartered</card:bank>
+        <card:cardName>Standard Chartered Priority Banking Visa Infinite</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00013d.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#StandardCharteredSimplyCashCreditCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#StandardCharteredSimplyCashCreditCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Standard Chartered</card:bank>
+        <card:cardName>Standard Chartered Simply Cash Credit Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/63c905ca1abde2487419420e.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#StandardCharteredVisaPlatinum -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#StandardCharteredVisaPlatinum">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>Standard Chartered</card:bank>
+        <card:cardName>Standard Chartered Visa Platinum</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000145.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBEVOLCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBEVOLCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB EVOL Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/6437814b056b64660333e528.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBLadysCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBLadysCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB Lady&apos;s Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000148.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBLadysSolitaireCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBLadysSolitaireCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB Lady&apos;s Solitaire Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000154.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBONECard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBONECard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB ONE Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a00014f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBPRVIMilesCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBPRVIMilesCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB PRVI Miles Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/55e038d376092cc9694d446f.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBPRVIMilesEliteCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBPRVIMilesEliteCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#MidIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB PRVI Miles Elite Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8333.33</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64cc8078909d473f02007983.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBPlatinumBusinessCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBPlatinumBusinessCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB Platinum Business Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64cc8189909d473f02007987.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBPreferredCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBPreferredCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB Preferred Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/55532e4dd75c88f321f53b7b.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBSimpleCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBSimpleCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB Simple Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64cc81ec909d473f02007989.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBVisaInfiniteCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBVisaInfiniteCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB Visa Infinite Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000153.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBWorldCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBWorldCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB World Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64cc8107909d473f02007985.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UOBZenithCard -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UOBZenithCard">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#FreeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#HighInterestCard"/>
+        <rdf:type rdf:resource="http://example.org/card#PremiumCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</card:annualFee>
+        <card:bank>UOB</card:bank>
+        <card:cardName>UOB Zenith Card</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">16000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/64cc6d85909d473f02007981.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UUM-BSNGoldMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UUM-BSNGoldMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#BudgetCard"/>
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowIncomeCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>UUM-BSN Gold MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9.95</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000063.jpg"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/card#UUM-BSNPlatinumMasterCardCreditCard-i -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/card#UUM-BSNPlatinumMasterCardCreditCard-i">
+        <rdf:type rdf:resource="http://example.org/card#CreditCard"/>
+        <rdf:type rdf:resource="http://example.org/card#LowInterestCard"/>
+        <card:annualFee rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</card:annualFee>
+        <card:bank>BSN</card:bank>
+        <card:cardName>UUM-BSN Platinum MasterCard Credit Card-i</card:cardName>
+        <card:interestRate rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9.95</card:interestRate>
+        <card:minIncome rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</card:minIncome>
+        <card:imageUrl rdf:resource="https://ringgitplus.com/img/card-120/519489e2193821ed4a000057.jpg"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
