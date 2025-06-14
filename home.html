@@ -34,6 +34,7 @@
     <a class="navbar-brand">SmartCardMY</a>
     <div>
       <span id="userStatus" class="me-3 text-white"></span>
+      <button id="settingsBtn" class="btn btn-outline-info me-2 d-none" data-bs-toggle="modal" data-bs-target="#settingsModal">Settings</button>
       <button id="logoutBtn" class="btn btn-outline-light me-2 d-none" onclick="logout()">Logout</button>
       <button id="loginBtn" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
       <button id="registerBtn" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
@@ -47,57 +48,52 @@
     <button id="getStartedBtn" class="btn btn-success px-4 py-2" data-bs-toggle="modal" data-bs-target="#registerModal">Get Started</button>
   </div>
 
-  <!-- Place this just below the Hero Section -->
-<div class="container mt-4">
-  <div id="videoCarousel" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 1110px;">
-    <div class="carousel-inner rounded shadow">
-      <div class="carousel-item active">
-        <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="video/maybank_advertise.mp4" type="video/mp4">
-        </video>
+  <!-- Video Carousel -->
+  <div class="container mt-4">
+    <div id="videoCarousel" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: 1110px;">
+      <div class="carousel-inner rounded shadow">
+        <div class="carousel-item active">
+          <video class="d-block w-100 rounded" autoplay muted loop playsinline>
+            <source src="video/maybank_advertise.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="carousel-item">
+          <video class="d-block w-100 rounded" autoplay muted loop playsinline>
+            <source src="video/GSC_HL_advertise.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="carousel-item">
+          <video class="d-block w-100 rounded" autoplay muted loop playsinline>
+            <source src="video/HSBC_advertise.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
-      <div class="carousel-item">
-        <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="video/GSC_HL_advertise.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="carousel-item">
-        <video class="d-block w-100 rounded" autoplay muted loop playsinline>
-          <source src="video/HSBC_advertise.mp4" type="video/mp4">
-        </video>
-      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
   </div>
-</div>
-
-
 
   <!-- Filter Section -->
-<div class="container mt-5">
-  <div class="d-flex flex-wrap justify-content-between align-items-center">
-    <div class="filter-buttons mb-2">
-      <h5 class="mb-2 text-white">Filter by Card Type</h5>
-      <div>
-        <button class="btn btn-outline-secondary m-1" onclick="filterCards('all')">All Cards</button>
-        <button class="btn btn-outline-primary m-1" onclick="filterCards('FreeCard')">Free Cards</button>
-        <button class="btn btn-outline-success m-1" onclick="filterCards('BudgetCard')">Budget Cards</button>
-        <button class="btn btn-outline-warning m-1" onclick="filterCards('PremiumCard')">Premium Cards</button>
+  <div class="container mt-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+      <div class="filter-buttons mb-2">
+        <h5 class="mb-2 text-white">Filter by Card Type</h5>
+        <div>
+          <button class="btn btn-outline-secondary m-1" onclick="filterCards('all')">All Cards</button>
+          <button class="btn btn-outline-primary m-1" onclick="filterCards('FreeCard')">Free Cards</button>
+          <button class="btn btn-outline-success m-1" onclick="filterCards('BudgetCard')">Budget Cards</button>
+          <button class="btn btn-outline-warning m-1" onclick="filterCards('PremiumCard')">Premium Cards</button>
+        </div>
+      </div>
+      <div class="search-bar mb-2">
+        <input type="text" id="cardSearchInput" class="form-control" placeholder="Search cards by name..." oninput="searchCards()" />
       </div>
     </div>
-
-    <div class="search-bar mb-2">
-      <input type="text" id="cardSearchInput" class="form-control"
-       placeholder="Search cards by name..." oninput="searchCards()" />
-    </div>
   </div>
-</div>
-
 
   <!-- Recommendations -->
   <div class="container mt-4 d-none" id="recommendationResults">
@@ -114,8 +110,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <img src="https://i.pinimg.com/564x/32/30/15/32301584d1103e1ae4c93c02befc26fb.jpg" 
-               alt="Promo" class="img-fluid mb-3" style="max-height: 200px;" />
+          <img src="https://i.pinimg.com/564x/32/30/15/32301584d1103e1ae4c93c02befc26fb.jpg" alt="Promo" class="img-fluid mb-3" style="max-height: 200px;" />
           <p class="lead">Apply today and enjoy RM100 cashback with 0% interest on balance transfers!</p>
           <a href="#" class="btn btn-danger px-4">Apply Now</a>
         </div>
@@ -123,7 +118,7 @@
     </div>
   </div>
 
-  <!-- Register Modal -->
+  <!-- Register Modal (with new preferences) -->
   <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -144,6 +139,22 @@
             <div class="mb-3">
               <label for="income" class="form-label">Monthly Income (MYR)</label>
               <input type="number" class="form-control" id="income" min="0" required />
+            </div>
+            <div class="mb-3">
+              <label for="preferredBank" class="form-label">Preferred Bank</label>
+              <select class="form-select" id="preferredBank" required>
+                <option value="" disabled selected>Select bank</option>
+                <option value="Affin Bank">Affin Bank</option>
+                <option value="Maybank">Maybank</option>
+                <option value="CIMB">CIMB</option>
+                <option value="HSBC">HSBC</option>
+                <option value="AEON">AEON</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="preferredInterestRate" class="form-label">Preferred Interest Rate (%)</label>
+              <input type="range" class="form-range" min="0" max="20" step="0.5" id="preferredInterestRate" value="10" oninput="document.getElementById('interestRateValue').innerText = this.value + '%'">
+              <small>Selected: <span id="interestRateValue">10%</span></small>
             </div>
           </div>
           <div class="modal-footer">
@@ -181,15 +192,68 @@
     </div>
   </div>
 
-  <!-- JS: Auto-show Ad Modal -->
+  <!-- Recommendation Modal -->
+  <div class="modal fade" id="recommendModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">🌟 Top 3 Recommended Cards for You</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="recommendModalBody">
+          <!-- Dynamic content here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="settingsForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Preferences</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="updateIncome" class="form-label">Monthly Income (MYR)</label>
+            <input type="number" class="form-control" id="updateIncome" min="0" required />
+          </div>
+          <div class="mb-3">
+            <label for="updateBank" class="form-label">Preferred Bank</label>
+            <select class="form-select" id="updateBank" required>
+              <option value="" disabled>Select bank</option>
+              <option value="Affin Bank">Affin Bank</option>
+              <option value="Maybank">Maybank</option>
+              <option value="CIMB">CIMB</option>
+              <option value="HSBC">HSBC</option>
+              <option value="AEON">AEON</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="updateInterest" class="form-label">Preferred Interest Rate (%)</label>
+            <input type="range" class="form-range" min="0" max="20" step="0.5" id="updateInterest" value="10" oninput="document.getElementById('updateInterestValue').innerText = this.value + '%'">
+            <small>Selected: <span id="updateInterestValue">10%</span></small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Add a button to open the settings modal somewhere in navbar -->
+<button id="settingsBtn" class="btn btn-outline-info me-2 d-none" data-bs-toggle="modal" data-bs-target="#settingsModal">Settings</button>
+
   <script>
     window.addEventListener("load", () => {
       const adModal = new bootstrap.Modal(document.getElementById("adModal"));
       adModal.show();
     });
   </script>
-
-  <!-- JS Logic -->
   <script src="main.js"></script>
 </body>
 </html>
