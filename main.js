@@ -210,6 +210,35 @@ function searchCards() {
 }
 document.getElementById("cardSearchInput").addEventListener("input", searchCards);
 
+async function fetchCardsByBank() {
+  const income = auth.currentUserIncome ?? 999999999;
+  const selectedBank = document.getElementById("bankDropdown").value;
+
+  const endpoint = selectedBank === "__ALL__" ? "/get-cards" : "/get-cards-by-bank";
+  const body = selectedBank === "__ALL__"
+    ? { income, filterType: "all" }
+    : { income, bank: selectedBank };
+
+  try {
+    const res = await fetch(`http://localhost:5000${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+
+    const cards = await res.json();
+    renderCards(cards);
+
+    if (auth.currentUser && cards.length >= 3) {
+      const pref = auth.userPreference || {};
+      showTop3Recommendations(cards, auth.currentUserIncome, pref.bank, pref.interest);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("❌ Failed to load cards.");
+  }
+}
+
 // ===== Recommendation Scoring =====
 function scoreCard(card, userIncome, preferredBank = "", preferredRate = 10) {
   let score = 0;

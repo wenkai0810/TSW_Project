@@ -79,7 +79,9 @@
 
   <!-- Filter Section -->
   <div class="container mt-5">
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+      <!-- Card Type Buttons -->
       <div class="filter-buttons mb-2">
         <h5 class="mb-2 text-white">Filter by Card Type</h5>
         <div>
@@ -89,11 +91,43 @@
           <button class="btn btn-outline-warning m-1" onclick="filterCards('PremiumCard')">Premium Cards</button>
         </div>
       </div>
+
+      <!-- Bank Dropdown -->
+      <div class="bank-filter mb-2">
+        <label for="bankDropdown" class="form-label text-white">Filter by Bank</label>
+        <div class="d-flex align-items-center gap-2">
+          <select id="bankDropdown" class="form-select">
+            <option value="__ALL__">All Banks</option>
+            <option value="AEON">AEON</option>
+            <option value="Affin Bank">Affin Bank</option>
+            <option value="Affin Islamic Bank">Affin Islamic Bank</option>
+            <option value="Alliance Bank">Alliance Bank</option>
+            <option value="AmBank">AmBank</option>
+            <option value="BSN">BSN</option>
+            <option value="Bank Islam">Bank Islam</option>
+            <option value="Bank Rakyat">Bank Rakyat</option>
+            <option value="CIMB">CIMB</option>
+            <option value="HSBC">HSBC</option>
+            <option value="Hong Leong Bank">Hong Leong Bank</option>
+            <option value="ICBC">ICBC</option>
+            <option value="Maybank">Maybank</option>
+            <option value="OCBC">OCBC</option>
+            <option value="Public Bank">Public Bank</option>
+            <option value="RHB">RHB</option>
+            <option value="Standard Chartered">Standard Chartered</option>
+            <option value="UOB">UOB</option>
+          </select>
+          <button class="btn btn-info" onclick="fetchCardsByBank()">Search</button>
+        </div>
+      </div>
+
+      <!-- Search Input -->
       <div class="search-bar mb-2">
         <input type="text" id="cardSearchInput" class="form-control" placeholder="Search cards by name..." oninput="searchCards()" />
       </div>
     </div>
   </div>
+
 
   <!-- Recommendations -->
   <div class="container mt-4 d-none" id="recommendationResults">
@@ -112,7 +146,6 @@
         <div class="modal-body text-center">
           <img src="https://i.pinimg.com/564x/32/30/15/32301584d1103e1ae4c93c02befc26fb.jpg" alt="Promo" class="img-fluid mb-3" style="max-height: 200px;" />
           <p class="lead">Apply today and enjoy RM100 cashback with 0% interest on balance transfers!</p>
-          <a href="#" class="btn btn-danger px-4">Apply Now</a>
         </div>
       </div>
     </div>
@@ -224,11 +257,24 @@
             <label for="updateBank" class="form-label">Preferred Bank</label>
             <select class="form-select" id="updateBank" required>
               <option value="" disabled>Select bank</option>
+              <option value="AEON">AEON</option>
               <option value="Affin Bank">Affin Bank</option>
-              <option value="Maybank">Maybank</option>
+              <option value="Affin Islamic Bank">Affin Islamic Bank</option>
+              <option value="Alliance Bank">Alliance Bank</option>
+              <option value="AmBank">AmBank</option>
+              <option value="BSN">BSN</option>
+              <option value="Bank Islam">Bank Islam</option>
+              <option value="Bank Rakyat">Bank Rakyat</option>
               <option value="CIMB">CIMB</option>
               <option value="HSBC">HSBC</option>
-              <option value="AEON">AEON</option>
+              <option value="Hong Leong Bank">Hong Leong Bank</option>
+              <option value="ICBC">ICBC</option>
+              <option value="Maybank">Maybank</option>
+              <option value="OCBC">OCBC</option>
+              <option value="Public Bank">Public Bank</option>
+              <option value="RHB">RHB</option>
+              <option value="Standard Chartered">Standard Chartered</option>
+              <option value="UOB">UOB</option>
             </select>
           </div>
           <div class="mb-3">

@@ -91,5 +91,67 @@ def get_cards():
         return jsonify({"error": "Failed to parse bindings", "details": str(e)}), 500
 
 
+@app.route('/get-cards-by-bank', methods=['POST'])
+def get_cards_by_bank():
+    data = request.get_json()
+    income = data.get("income", 0)
+    bank = data.get("bank", "")
+    print(f"🎯 Fetching all card details from bank '{bank}' with income <= {income}")
+
+    sparql_query = f"""
+    PREFIX : <http://example.org/card#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT ?cardName ?bank ?annualFee ?imageUrl ?interestRate ?minIncome
+    WHERE {{
+      ?card a :CreditCard ;
+            :cardName ?cardName ;
+            :bank ?bank ;
+            :annualFee ?annualFee ;
+            :interestRate ?interestRate ;
+            :minIncome ?minIncome .
+      OPTIONAL {{ ?card :imageUrl ?imageUrl }}
+      FILTER (
+        ?bank = "{bank}" &&
+        xsd:decimal(?minIncome) <= "{income}"^^xsd:decimal
+      )
+    }}
+    """
+
+    print("📄 SPARQL Query for bank + income:\n", sparql_query)
+
+    try:
+        response = requests.post(
+            "http://localhost:3030/credit_cards/sparql",
+            headers={"Content-Type": "application/sparql-query"},
+            data=sparql_query
+        )
+
+        if response.status_code != 200:
+            print("❌ SPARQL query failed:", response.status_code)
+            return jsonify({"error": "SPARQL query failed", "details": response.text}), 500
+
+        results = response.json()
+        bindings = results["results"]["bindings"]
+        cards = []
+        for binding in bindings:
+            card = {
+                "name": binding["cardName"]["value"],
+                "bank": binding["bank"]["value"],
+                "annualFee": binding["annualFee"]["value"],
+                "interestRate": binding["interestRate"]["value"],
+                "minIncome": binding["minIncome"]["value"],
+                "imageUrl": binding.get("imageUrl", {}).get("value", "")
+            }
+            cards.append(card)
+
+        print("✅ Filtered cards by bank and income:", cards)
+        return jsonify(cards)
+
+    except Exception as e:
+        print("❌ Exception during SPARQL request:", e)
+        return jsonify({"error": "Exception occurred", "details": str(e)}), 500
+
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
