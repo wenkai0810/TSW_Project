@@ -35,7 +35,7 @@ Start all services on their respective ports:
 # 1. Flask Backend (http://localhost:5000)
 python app.py
 
-# 2. Frontend Static HTML (http://localhost:8000/home.html)
+# 2. Frontend Static HTML (http://localhost:8080/home.html)
 python -m http.server 8080
 
 # 3. Apache Jena Fuseki Server (http://localhost:3030)
@@ -47,3 +47,6 @@ if (no data):
 
 # 4. Node.js Email Server (http://localhost:5050 or as defined)
 node server.js
+
+# 5. Run this localhost link
+http://localhost:8080/home.html
