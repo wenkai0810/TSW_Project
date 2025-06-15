@@ -6,14 +6,13 @@ app = Flask(__name__)
 CORS(app)
 
 def query_cards(user_income, filter_type="all"):
-    # SPARQL Class clause
     if filter_type in ["FreeCard", "BudgetCard", "PremiumCard"]:
         card_type_clause = f"?card a :{filter_type} ."
-        income_filter = ""  # No income filter for specific class-based cards
+        income_filter = ""
     else:
         card_type_clause = "?card a :CreditCard ."
         if user_income >= 999999999:
-            income_filter = ""  # No filter for guests
+            income_filter = ""
         else:
             income_filter = f'FILTER (xsd:decimal(?minIncome) <= "{user_income}"^^xsd:decimal)'
 
@@ -45,7 +44,6 @@ def query_cards(user_income, filter_type="all"):
 
         if response.status_code != 200:
             print("❌ SPARQL query failed with status:", response.status_code)
-            print("⚠️ Response body:", response.text)
             return {"error": "SPARQL query failed", "details": response.text}
 
         return response.json()
@@ -58,7 +56,7 @@ def query_cards(user_income, filter_type="all"):
 @app.route('/get-cards', methods=['POST'])
 def get_cards():
     data = request.get_json()
-    income = data.get("income", 0)
+    income = float(data.get("income", 0))
     filter_type = data.get("filterType", "all")
     print(f"🚀 Received get-cards request | Income: {income}, Filter: {filter_type}")
 
@@ -72,7 +70,11 @@ def get_cards():
         bindings = results["results"]["bindings"]
         cards = []
         for binding in bindings:
-            print("📦 Card binding:", binding)
+            min_income = float(binding["minIncome"]["value"])
+            if min_income > income:
+                print(f"⚠️ Skipping card {binding['cardName']['value']} with minIncome {min_income} > userIncome {income}")
+                continue
+
             card = {
                 "name": binding["cardName"]["value"],
                 "bank": binding["bank"]["value"],
@@ -94,7 +96,7 @@ def get_cards():
 @app.route('/get-cards-by-bank', methods=['POST'])
 def get_cards_by_bank():
     data = request.get_json()
-    income = data.get("income", 0)
+    income = float(data.get("income", 0))
     bank = data.get("bank", "")
     print(f"🎯 Fetching all card details from bank '{bank}' with income <= {income}")
 
@@ -111,13 +113,13 @@ def get_cards_by_bank():
             :interestRate ?interestRate ;
             :minIncome ?minIncome .
       OPTIONAL {{ ?card :imageUrl ?imageUrl }}
+
       FILTER (
-        ?bank = "{bank}" &&
-        xsd:decimal(?minIncome) <= "{income}"^^xsd:decimal
+        lcase(str(?bank)) = lcase("{bank}") &&
+        xsd:decimal(?minIncome) <= xsd:decimal("{income}")
       )
     }}
     """
-
     print("📄 SPARQL Query for bank + income:\n", sparql_query)
 
     try:
@@ -135,6 +137,11 @@ def get_cards_by_bank():
         bindings = results["results"]["bindings"]
         cards = []
         for binding in bindings:
+            min_income = float(binding["minIncome"]["value"])
+            if min_income > income:
+                print(f"⚠️ Skipping card {binding['cardName']['value']} with minIncome {min_income} > userIncome {income}")
+                continue
+
             card = {
                 "name": binding["cardName"]["value"],
                 "bank": binding["bank"]["value"],

@@ -96,14 +96,24 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         alert("Please verify your email first.");
         return;
       }
+
       alert("✅ Login successful!");
       document.getElementById("loginForm").reset();
-      bootstrap.Modal.getInstance(document.getElementById("loginModal")).hide();
+
+      const modal = bootstrap.Modal.getInstance(document.getElementById("loginModal"));
+      modal.hide();
+
+      // Wait for modal to fully close before reloading
+      document.getElementById("loginModal").addEventListener("hidden.bs.modal", function () {
+        window.location.reload();
+      }, { once: true }); // Ensures it runs only once
+
     })
     .catch(error => {
       alert("❌ " + error.message);
     });
 });
+
 
 // ===== Fetch & Display Cards =====
 let allCardsCache = [];
